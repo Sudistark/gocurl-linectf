@@ -13,7 +13,7 @@ ENV GO111MODULE=on \
     GOOS=linux \
     GOARCH=amd64
 
-COPY ./baby-simple-gocurl "${GOCURL}"
+COPY ./adult-simple-gocurl "${GOCURL}"
 COPY start.sh "${GOCURL}/start.sh"
 
 WORKDIR "${GOCURL}"

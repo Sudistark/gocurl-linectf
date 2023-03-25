@@ -32,7 +32,7 @@ func main() {
 
 	r.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{
-			"a": c.ClientIP(),
+			"a": c.RemoteIP(),
 		})
 	})
 
@@ -49,7 +49,7 @@ func main() {
 		reqIP := strings.Split(c.Request.RemoteAddr, ":")[0]
 		fmt.Println("[+] " + reqUrl + ", " + reqIP + ", " + reqHeaderKey + ", " + reqHeaderValue)
 
-		if c.ClientIP() != "127.0.0.1" && (strings.Contains(reqUrl, "flag") || strings.Contains(reqUrl, "curl") || strings.Contains(reqUrl, "%")) {
+		if strings.Contains(reqUrl, "flag") || strings.Contains(reqUrl, "curl") || strings.Contains(reqUrl, "%") {
 			c.JSON(http.StatusBadRequest, gin.H{"message": "Something wrong"})
 			return
 		}
